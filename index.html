@@ -16,11 +16,20 @@
             <li><a href="index.html">home2</a></li>
         </ul>
     </nav>
-    <h1>Welcome to My Website!</h1>
-    <p>This is a paragraph of text on my new page.</p>
+    <h1>Restaurants</h1>
+    <p>Search for restaurants</p>
     <input type="text" id="eng"/>
-    <button py-click="translate_english">translate</button>
+    <button py-click="on_submit">search</button>
     <div id="output"></div>
     <script type="py" src="./main.py" config="./pyscript.json"></script>
+
+    <div class="restaurant-card">
+        <div class="card-content">
+            <h2 id="restaurantName">title</h2>
+            <p id="location">location</p>
+            <p id="rating">5 stars</p>
+        </div>
+    </div>
+
 </body>
 </html>
