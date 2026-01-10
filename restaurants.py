@@ -1,7 +1,10 @@
 from pyscript import document
+
 def on_submit(event):
-    nonlocal location
-    global new_url
+    ##nonlocal location
+    ##global new_url
+    print("in pyscript")
+    location = ""
     input_text=document.querySelector("#eng")
     location.set(input_text.value)
     print("Location " + location.get())
