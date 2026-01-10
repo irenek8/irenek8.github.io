@@ -1,12 +1,8 @@
 *{
-animation-name:animation2;
-animation-duration:10s;
-animation-iteration-count:infinite;
-animation-direction:alternate;
-animation-timing-function:linear;
 display:block;
 margin-left:auto;
 margin-right:auto;
+text-align:center;
 }
 h1{
 color:purple;

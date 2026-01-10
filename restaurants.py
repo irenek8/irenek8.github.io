@@ -1,15 +1,48 @@
-from pyscript import document
+from pyscript import documents
+from selenium import webdriver
+from selenium.webdriver import ActionChains
+from selenium.webdriver.common.by import By
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.support.expected_conditions import none_of
+from selenium.webdriver.support.wait import WebDriverWait
+import time
 
+location = "test"
+new_url = "test"
 def on_submit(event):
     ##nonlocal location
-    ##global new_url
+    global new_url
     print("in pyscript")
-    location = ""
+    global location
     input_text=document.querySelector("#eng")
-    location.set(input_text.value)
-    print("Location " + location.get())
-    ##new_url = getUrlForLocation(location.get())
+    location = input_text.value
+    print("Location " + location)
+    new_url = getUrlForLocation(location)
     ##start_search()
+
+def getUrlForLocation(location):
+    options = Options()
+    options.add_argument("--headless")
+    driver = None
+    try:
+        driver = webdriver.Chrome(options=options)
+        driver.get("https://www.google.com/maps")
+        search_box = WebDriverWait(driver,5).until(EC.presence_of_element_located((By.ID,"searchboxinput")))
+        search_box.send_keys(location)
+        search_box.send_keys(Keys.ENTER)
+        #WebDriverWait(driver, 10).until(EC.url_contains("place"))
+        time.sleep(3)
+        focus_url = driver.current_url
+        print(focus_url)
+        return focus_url
+    except Exception as e:
+        print("in exception"+e)
+        return None
+    finally:
+        if driver:
+            driver.quit()
 
 def create_cards(dictionary, card_container, custom_font):
     global current_card_index

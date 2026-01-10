@@ -5,24 +5,19 @@
     <link rel="stylesheet" href="style.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Page Title</title>
+    <title>Restaurant Finder</title>
     <link rel="stylesheet" href="https://pyscript.net/releases/2025.11.2/core.css">
     <script type="module" src="https://pyscript.net/releases/2025.11.2/core.js"></script>
 </head>
 <body>
-    <nav>
-        <ul>
-            <li><a href="index.html">home</a></li>
-            <li><a href="index.html">home2</a></li>
-        </ul>
-    </nav>
     <h1>Restaurants</h1>
     <p>Search for restaurants</p>
     <input type="text" id="eng"/>
     <button py-click="on_submit">search</button>
+    <button id="search">search2</button>
     <div id="output"></div>
-    <script type="py" src="./restaurants.py" config="./pyscript.json"></script>
-
+    <script type="py" src="./restaurants.py"></script>
+<!--
     <div class="restaurant-card">
         <div class="card-content">
             <h2 id="restaurantName">title</h2>
@@ -30,6 +25,6 @@
             <p id="rating">5 stars</p>
         </div>
     </div>
-
+-->
 </body>
 </html>
