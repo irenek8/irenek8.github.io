@@ -21,11 +21,14 @@ def create_cards(dictionary, card_container, custom_font):
         name_ele=document.createElement('h2')
         name_ele.innerText=item["name"]
         label2 = tk.Label(card, text=item["location"], wraplength=220,font = custom_font)
-        label2.pack()
+        location_ele = document.createElement('h2')
+        location_ele.innerText = item["location"]
         label3 = tk.Label(card, text=item["rating"],font = custom_font)
-        label3.pack()
+        rating_ele = document.createElement('h2')
+        rating_ele.innerText = item["rating"]
         label4 = tk.Label(card, text=showStars(item["rating"]),font = custom_font)
-        label4.pack()
+        stars_ele = document.createElement('h2')
+        stars_ele.innerText = showStars(item["rating"])
         card.bind("<Button-1>", lambda event, current = item: on_card_click(current["website"]))
         for widget in card.winfo_children():
             widget.bind("<Button-1>", lambda event, current = item: on_card_click(current["website"]))
