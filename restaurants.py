@@ -1,4 +1,29 @@
-from pyscript import documents
+import asyncio
+import json
+from pyscript import document
+from pyodide.http import pyfetch
+
+async def on_submit(event):
+    input_text = document.querySelector("#eng").value
+    output_text = document.querySelector("#output")
+    output_text.innerHTML="Searching"
+    url = f"https://nominatim.openstreetmap.org/search?q={input_text}&format=json&addressdetails=1&limit=10"
+    try:
+        headers = {"User-Agent": "MyRestaurantFinderProject/1.0"}
+        response = await pyfetch(url, method="GET", headers=headers)
+        if response.ok:
+            data=await response.json
+            if not data:
+                output_text.innerHTML = "Nothing found"
+                return
+            for location in data:
+                name=location.get("display_name")
+                output_text.innerHTML = f"found: {name}"
+        else:
+            output_text.innerHTML = f"api_error: {response.status}"
+    except Exception as e:
+        output_text.innerHTML = f"error: {str(e)}"
+"""
 from selenium import webdriver
 from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
@@ -69,3 +94,4 @@ def create_cards(dictionary, card_container, custom_font):
         for widget in card.winfo_children():
             widget.bind("<Button-1>", lambda event, current = item: on_card_click(current["website"]))
     current_card_index += 3
+"""
